@@ -6,7 +6,8 @@
 
 **OTHERS**
 
-- 移除`getDict`方法
+- 移除`getDict`方法 & getDictOptions代码修改(逻辑不变)
+- 在`isTransformResponse`场景下对401的校验
 
 # 1.4.1
 
