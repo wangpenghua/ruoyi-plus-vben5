@@ -73,6 +73,9 @@ const Textarea = defineAsyncComponent(() =>
 const TimePicker = defineAsyncComponent(
   () => import('ant-design-vue/es/time-picker'),
 );
+const TimeRangePicker = defineAsyncComponent(() =>
+  import('ant-design-vue/es/time-picker').then((res) => res.TimeRangePicker),
+);
 const TreeSelect = defineAsyncComponent(
   () => import('ant-design-vue/es/tree-select'),
 );
@@ -153,6 +156,7 @@ export type ComponentType =
   | 'Switch'
   | 'Textarea'
   | 'TimePicker'
+  | 'TimeRangePicker'
   | 'TreeSelect'
   | 'Upload'
   | BaseFormComponentType;
@@ -222,6 +226,7 @@ async function initComponentAdapter() {
     Switch,
     Textarea: withDefaultPlaceholder(Textarea, 'input'),
     TimePicker,
+    TimeRangePicker,
     TreeSelect: withDefaultPlaceholder(TreeSelect, 'select'),
     Upload,
     ImageUpload,
