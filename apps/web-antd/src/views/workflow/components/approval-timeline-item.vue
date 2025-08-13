@@ -1,14 +1,18 @@
 <script setup lang="ts">
 import type { Flow } from '#/api/workflow/instance/model';
 
-import { onMounted, ref } from 'vue';
+import { computed, h, onMounted, ref } from 'vue';
 
 import { VbenAvatar } from '@vben/common-ui';
 import { DictEnum } from '@vben/constants';
 import { cn } from '@vben/utils';
 
-import { MessageOutlined } from '@ant-design/icons-vue';
-import { TimelineItem } from 'ant-design-vue';
+import {
+  MessageOutlined,
+  UsergroupAddOutlined,
+  UserOutlined,
+} from '@ant-design/icons-vue';
+import { Avatar, TimelineItem } from 'ant-design-vue';
 
 import { ossInfo } from '#/api/system/oss';
 import { renderDict } from '#/utils/render';
@@ -40,13 +44,27 @@ onMounted(async () => {
     name: item.originalName,
   }));
 });
+
+/**
+ * 这里无法处理昵称中带,的情况
+ */
+const isMultiplePerson = computed(
+  () => props.item.approveName?.split(',').length > 1,
+);
 </script>
 
 <template>
   <TimelineItem>
     <template #dot>
       <div class="relative rounded-full border">
+        <Avatar
+          class="bg-primary-400"
+          v-if="isMultiplePerson"
+          :size="36"
+          :icon="h(UsergroupAddOutlined)"
+        />
         <VbenAvatar
+          v-else
           :alt="item?.approveName ?? 'unknown'"
           class="bg-primary size-[36px] rounded-full text-white"
           src=""
@@ -62,12 +80,28 @@ onMounted(async () => {
         ></div>
       </div>
     </template>
-    <div class="ml-2 flex flex-col gap-0.5">
+    <div class="mb-5 ml-2 flex flex-col gap-1">
       <div class="flex items-center gap-1">
         <div class="font-bold">{{ item.nodeName }}</div>
         <component :is="renderDict(item.flowStatus, DictEnum.WF_TASK_STATUS)" />
       </div>
-      <div>{{ item.approveName }}</div>
+
+      <div :class="cn('mt-2 flex flex-wrap gap-2')" v-if="isMultiplePerson">
+        <div
+          :class="cn('bg-foreground/5 flex items-center rounded-full', 'p-1')"
+          v-for="(name, index) in item.approveName.split(',')"
+          :key="index"
+        >
+          <Avatar
+            class="bg-primary-400 flex items-center justify-center"
+            :size="24"
+            :icon="h(UserOutlined)"
+          />
+          <span class="px-1">{{ name }}</span>
+        </div>
+      </div>
+      <div v-else>{{ item.approveName }}</div>
+
       <div>{{ item.updateTime }}</div>
       <div
         v-if="item.message"
