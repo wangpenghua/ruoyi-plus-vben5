@@ -156,7 +156,7 @@ async function handleDownload(row: OssFile) {
 
   const downloadLink = `${apiURL}/resource/oss/download/${row.ossId}?${stringify(params)}`;
   // fileName不设置也行 默认会取header里的名称
-  downloadByUrl({ fileName: row.fileName, url: downloadLink, target: '_self' });
+  downloadByUrl({ fileName: row.fileName, url: downloadLink });
 }
 
 async function handleDelete(row: OssFile) {
