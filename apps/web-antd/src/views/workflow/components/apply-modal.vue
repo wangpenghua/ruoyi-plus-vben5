@@ -35,7 +35,10 @@ const [BasicModal, modalApi] = useVbenModal({
   title: '流程发起',
   fullscreenButton: false,
   onConfirm: handleSubmit,
-  onCancel: () => emit('cancel'),
+  onCancel: () => {
+    emit('cancel');
+    modalApi.close();
+  },
   async onOpenChange(isOpen) {
     if (!isOpen) {
       return null;
