@@ -5,6 +5,8 @@ import { useVbenDrawer } from '@vben/common-ui';
 import { $t } from '@vben/locales';
 import { cloneDeep } from '@vben/utils';
 
+import { message } from 'ant-design-vue';
+
 import { useVbenForm } from '#/adapter/form';
 import { tenantAdd, tenantInfo, tenantUpdate } from '#/api/system/tenant';
 import { packageSelectList } from '#/api/system/tenant-package';
@@ -35,6 +37,14 @@ const [BasicForm, formApi] = useVbenForm({
 
 async function setupPackageSelect() {
   const tenantPackageList = await packageSelectList();
+  /**
+   * 检测是否存在租户套餐 你也不想表单填完了发现套餐为0无法选中吧
+   */
+  if (tenantPackageList.length === 0) {
+    message.error('请先配置租户套餐');
+    throw new Error('请先配置租户套餐');
+  }
+
   const options = tenantPackageList.map((item) => ({
     label: item.packageName,
     value: item.packageId,
