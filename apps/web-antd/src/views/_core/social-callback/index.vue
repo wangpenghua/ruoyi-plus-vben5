@@ -7,8 +7,9 @@ import { useRoute, useRouter } from 'vue-router';
 import { DEFAULT_TENANT_ID } from '@vben/constants';
 import { preferences } from '@vben/preferences';
 import { useAccessStore } from '@vben/stores';
+import { cn } from '@vben/utils';
 
-import { message } from 'ant-design-vue';
+import { message, Spin } from 'ant-design-vue';
 
 import { authCallback } from '#/api';
 import { useAuthStore } from '#/store';
@@ -78,7 +79,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div></div>
+  <div :class="cn('flex items-center justify-center', 'h-screen w-screen')">
+    <Spin size="large" />
+  </div>
 </template>
-
-<style scoped></style>
