@@ -5,8 +5,6 @@ import type { ContentCompactType } from '@vben-core/typings';
 
 import { computed } from 'vue';
 
-
-
 import { useLayoutContentStyle } from '@vben-core/composables';
 import { Slot } from '@vben-core/shadcn-ui';
 
