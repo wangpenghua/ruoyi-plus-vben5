@@ -73,10 +73,7 @@ export const columns: VxeGridProps['columns'] = [
   },
 ];
 
-const defaultExpireTime = dayjs()
-  .add(365, 'days')
-  .startOf('day')
-  .format('YYYY-MM-DD HH:mm:ss');
+const defaultExpireTime = dayjs().add(365, 'days').startOf('day');
 
 export const drawerSchema: FormSchemaGetter = () => [
   {
