@@ -9,6 +9,7 @@ import { App, ConfigProvider, theme } from 'antdv-next';
 import { antdLocale } from '#/locales';
 
 import { useUploadTip } from './upload-tip';
+import { PopupContext } from './utils/context';
 
 defineOptions({ name: 'App' });
 
@@ -38,6 +39,7 @@ useUploadTip();
   <ConfigProvider :locale="antdLocale" :theme="tokenTheme" variant="outlined">
     <App>
       <RouterView />
+      <PopupContext />
     </App>
   </ConfigProvider>
 </template>

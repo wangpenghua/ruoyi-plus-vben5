@@ -15,7 +15,7 @@ import {
   SvgDownloadIcon,
 } from '@vben/icons';
 
-import { Alert, notification } from 'antdv-next';
+import { Alert } from 'antdv-next';
 
 import AnalyticsTrends from './analytics-trends.vue';
 import AnalyticsVisitsData from './analytics-visits-data.vue';
@@ -67,7 +67,7 @@ const chartTabs: TabOption[] = [
 ];
 
 function handleClick() {
-  notification.success({
+  window.notification.success({
     title: '新的 notification 样式',
     description: 'ant design',
   });
