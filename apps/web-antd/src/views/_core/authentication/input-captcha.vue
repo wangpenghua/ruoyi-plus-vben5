@@ -39,7 +39,7 @@ const modelValue = defineModel<string>({ default: '' });
       <div class="relative rounded-r-lg border">
         <img
           :src="captcha"
-          class="h-[40px] w-[115px] cursor-pointer rounded-r-lg"
+          class="h-[40px] w-[150px] cursor-pointer rounded-r-lg"
           :class="{ 'pointer-events-none': loading }"
           @click="$emit('captchaClick')"
         />
