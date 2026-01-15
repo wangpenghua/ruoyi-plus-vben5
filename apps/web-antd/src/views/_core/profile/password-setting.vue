@@ -5,8 +5,6 @@ import { computed, ref } from 'vue';
 
 import { ProfilePasswordSetting, z } from '@vben/common-ui';
 
-import { message } from 'antdv-next';
-
 const profilePasswordSettingRef = ref();
 
 const formSchema = computed((): VbenFormSchema[] => {
@@ -53,7 +51,7 @@ const formSchema = computed((): VbenFormSchema[] => {
 });
 
 function handleSubmit() {
-  message.success('密码修改成功');
+  window.message.success('密码修改成功');
 }
 </script>
 <template>

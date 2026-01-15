@@ -16,7 +16,7 @@ import { cn } from '@vben/utils';
 
 import { CopyOutlined } from '@ant-design/icons-vue';
 import { useClipboard } from '@vueuse/core';
-import { Card, Divider, message, TabPane, Tabs } from 'antdv-next';
+import { Card, Divider, TabPane, Tabs } from 'antdv-next';
 
 import { flowInfo } from '#/api/workflow/instance';
 import { getTaskByTaskId } from '#/api/workflow/task';
@@ -130,7 +130,7 @@ watch(() => props.task, handleLoadInfo);
 const { copy } = useClipboard({ legacy: true });
 async function handleCopy(text: string) {
   await copy(text);
-  message.success('复制成功');
+  window.message.success('复制成功');
 }
 </script>
 
@@ -153,7 +153,7 @@ async function handleCopy(text: string) {
       <template #extra>
         <a-button size="small" @click="() => handleLoadInfo(task)">
           <div class="flex items-center justify-center">
-            <span class="icon-[material-symbols--refresh] size-24px"></span>
+            <span class="size-24px icon-[material-symbols--refresh]"></span>
           </div>
         </a-button>
       </template>
@@ -174,7 +174,7 @@ async function handleCopy(text: string) {
           <div class="flex items-center gap-2">
             <VbenAvatar
               :alt="task?.createByName ?? ''"
-              class="bg-primary size-[28px] rounded-full text-white"
+              class="size-[28px] rounded-full bg-primary text-white"
               src=""
             />
 

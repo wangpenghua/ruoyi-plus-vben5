@@ -3,7 +3,6 @@ import type { VbenFormProps } from '#/adapter/form';
 import { $t } from '@vben/locales';
 import { cloneDeep, formatDate } from '@vben/utils';
 
-import { message } from 'antdv-next';
 import { isFunction } from 'lodash-es';
 
 import { dataURLtoBlob, urlToBase64 } from './base64Conver';
@@ -26,7 +25,10 @@ export async function downloadExcel(
   requestData: any = {},
   withRandomName = true,
 ) {
-  const hideLoading = message.loading($t('pages.common.downloadLoading'), 0);
+  const hideLoading = window.message.loading(
+    $t('pages.common.downloadLoading'),
+    0,
+  );
   try {
     const data = await func(requestData);
     downloadExcelFile(data, fileName, withRandomName);
@@ -114,7 +116,10 @@ export async function commonDownloadExcel(
   requestData: any = {},
   options: DownloadExcelOptions = {},
 ) {
-  const hideLoading = message.loading($t('pages.common.downloadLoading'), 0);
+  const hideLoading = window.message.loading(
+    $t('pages.common.downloadLoading'),
+    0,
+  );
   try {
     const { withRandomName = true, fieldMappingTime } = options;
     // 需要处理时间字段映射

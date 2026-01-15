@@ -10,7 +10,6 @@ import type { Menu } from '#/api';
 import { generateAccessible } from '@vben/access';
 import { preferences } from '@vben/preferences';
 
-import { message } from 'antdv-next';
 import { cloneDeep } from 'lodash-es';
 
 import { getAllMenusApi } from '#/api';
@@ -241,8 +240,8 @@ async function generateAccess(options: GenerateMenuAndRoutesOptions) {
     ...options,
     fetchMenuListAsync: async () => {
       // 清除以前的message
-      message.destroy();
-      message.loading({
+      window.message.destroy();
+      window.message.loading({
         content: `${$t('common.loadingMenu')}...`,
         duration: 1,
       });

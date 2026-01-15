@@ -12,7 +12,7 @@ import { useTabs } from '@vben/hooks';
 import { $t } from '@vben/locales';
 import { getPopupContainer } from '@vben/utils';
 
-import { message, Select, Spin } from 'antdv-next';
+import { Select, Spin } from 'antdv-next';
 import { storeToRefs } from 'pinia';
 
 import { tenantDynamicClear, tenantDynamicToggle } from '#/api/system/tenant';
@@ -90,7 +90,7 @@ const onSelected: SelectProps['onSelect'] = async (
 
     // 关闭之前的message 只保留一条
     messageInstance.value?.();
-    messageInstance.value = message.success(
+    messageInstance.value = window.message.success(
       `${$t('component.tenantToggle.switch')} ${option.companyName}`,
     );
 
@@ -111,7 +111,9 @@ async function onDeselect() {
     await tenantDynamicClear();
     // 关闭之前的message 只保留一条
     messageInstance.value?.();
-    messageInstance.value = message.success($t('component.tenantToggle.reset'));
+    messageInstance.value = window.message.success(
+      $t('component.tenantToggle.reset'),
+    );
 
     lastSelected.value = '';
     close(false);

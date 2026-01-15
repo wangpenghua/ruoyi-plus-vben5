@@ -1,6 +1,6 @@
 import { $t } from '@vben/locales';
 
-import { message, Modal } from 'antdv-next';
+import { Modal } from 'antdv-next';
 
 import { useAuthStore } from '#/store';
 
@@ -93,7 +93,7 @@ export function handleUnauthorizedLogout() {
       }
     })
     .finally(() => {
-      message.error(timeoutMsg);
+      window.message.error(timeoutMsg);
       isLogoutProcessing = false;
     });
   // 不再执行下面逻辑

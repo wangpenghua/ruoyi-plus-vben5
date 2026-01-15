@@ -27,7 +27,7 @@ import {
   RsaEncryption,
 } from '@vben/utils';
 
-import { message, Modal } from 'antdv-next';
+import { Modal } from 'antdv-next';
 import { isEmpty, isNull } from 'lodash-es';
 
 import { useAuthStore } from '#/store';
@@ -165,7 +165,7 @@ function createRequestClient(baseURL: string) {
   // 通用的错误处理, 如果没有进入上面的错误处理逻辑，就会进入这里
   // 主要处理http状态码不为200(如网络异常/离线)的情况 必须放在在下面的响应拦截器之前
   client.addResponseInterceptor(
-    errorMessageResponseInterceptor((msg: string) => message.error(msg)),
+    errorMessageResponseInterceptor((msg: string) => window.message.error(msg)),
   );
 
   client.addResponseInterceptor<HttpResponse>({
@@ -258,7 +258,7 @@ function createRequestClient(baseURL: string) {
             title: $t('http.successTip'),
           });
         } else if (response.config.successMessageMode === 'message') {
-          message.success(successMsg);
+          window.message.success(successMsg);
         }
         // 分页情况下为code msg rows total 并没有data字段
         // 如果有data 直接返回data 没有data将剩余参数(...other)封装为data返回
@@ -293,7 +293,7 @@ function createRequestClient(baseURL: string) {
           title: $t('http.errorTip'),
         });
       } else if (response.config.errorMessageMode === 'message') {
-        message.error(timeoutMsg);
+        window.message.error(timeoutMsg);
       }
 
       throw new Error(timeoutMsg || $t('http.apiRequestFailed'));

@@ -9,7 +9,7 @@ import { ref, toRefs, watch } from 'vue';
 import { $t } from '@vben/locales';
 
 import { UploadOutlined } from '@ant-design/icons-vue';
-import { message, Upload } from 'antdv-next';
+import { Upload } from 'antdv-next';
 import { isArray, isFunction, isObject, isString } from 'lodash-es';
 
 import { uploadApi } from '#/api';
@@ -129,14 +129,14 @@ const beforeUpload = async (file: File) => {
   const { maxSize, accept } = props;
   const isAct = await checkFileType(file, accept);
   if (!isAct) {
-    message.error($t('component.upload.acceptUpload', [accept]));
+    window.message.error($t('component.upload.acceptUpload', [accept]));
     isActMsg.value = false;
     // 防止弹出多个错误提示
     setTimeout(() => (isActMsg.value = true), 1000);
   }
   const isLt = file.size / 1024 / 1024 > maxSize;
   if (isLt) {
-    message.error($t('component.upload.maxSizeMultiple', [maxSize]));
+    window.message.error($t('component.upload.maxSizeMultiple', [maxSize]));
     isLtMsg.value = false;
     // 防止弹出多个错误提示
     setTimeout(() => (isLtMsg.value = true), 1000);
@@ -165,7 +165,7 @@ async function customRequest(info: UploadRequestOption<any>) {
      * 内部的逻辑由requestClient.upload处理 这里不用判断业务状态码 不符合会自动reject
      */
     info.onSuccess!(res);
-    message.success($t('component.upload.uploadSuccess'));
+    window.message.success($t('component.upload.uploadSuccess'));
     // 获取
     const value = getValue();
     isInnerOperate.value = true;
@@ -218,9 +218,9 @@ function getValue() {
       </div>
       <div v-if="showDescription" class="mt-2 flex flex-wrap items-center">
         请上传不超过
-        <div class="text-primary mx-1 font-bold">{{ maxSize }}MB</div>
+        <div class="mx-1 font-bold text-primary">{{ maxSize }}MB</div>
         的
-        <div class="text-primary mx-1 font-bold">{{ accept.join('/') }}</div>
+        <div class="mx-1 font-bold text-primary">{{ accept.join('/') }}</div>
         格式文件
       </div>
     </Upload>

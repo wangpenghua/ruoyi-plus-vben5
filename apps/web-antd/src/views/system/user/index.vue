@@ -22,7 +22,7 @@ import {
   userRemove,
   userStatusChange,
 } from '#/api/system/user';
-import { TableSwitch } from '#/components/table';
+import ApiSwitch from '#/components/global/api-switch.vue';
 import { commonDownloadExcel } from '#/utils/file/download';
 
 import { columns, querySchema } from './data';
@@ -199,6 +199,14 @@ function handleMenuClick(key: string, row: any) {
     }
   }
 }
+
+async function handleChangeStatus(checked: boolean, row: User) {
+  console.log(checked);
+  await userStatusChange({
+    userId: row.userId,
+    status: checked ? '0' : '1',
+  });
+}
 </script>
 
 <template>
@@ -248,9 +256,10 @@ function handleMenuClick(key: string, row: any) {
           <Avatar :src="row.avatar || preferences.app.defaultAvatar" />
         </template>
         <template #status="{ row }">
-          <TableSwitch
-            v-model:value="row.status"
-            :api="() => userStatusChange(row)"
+          <!-- value只能接收boolean值 -->
+          <ApiSwitch
+            :value="row.status === '0'"
+            :api="(checked) => handleChangeStatus(checked, row)"
             :disabled="
               row.userId === 1 || !hasAccessByCodes(['system:user:edit'])
             "

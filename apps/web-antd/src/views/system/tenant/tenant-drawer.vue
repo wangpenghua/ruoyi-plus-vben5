@@ -6,7 +6,7 @@ import { useVbenDrawer } from '@vben/common-ui';
 import { $t } from '@vben/locales';
 import { cloneDeep } from '@vben/utils';
 
-import { Button, message, Skeleton } from 'antdv-next';
+import { Button, Skeleton } from 'antdv-next';
 
 import { useVbenForm } from '#/adapter/form';
 import { tenantAdd, tenantInfo, tenantUpdate } from '#/api/system/tenant';
@@ -43,7 +43,7 @@ async function setupPackageSelect() {
    * 检测是否存在租户套餐 你也不想表单填完了发现套餐为0无法选中吧
    */
   if (tenantPackageList.length === 0) {
-    const closeMessage = message.error(
+    const closeMessage = window.message.error(
       h('span', {}, [
         '请先配置租户套餐',
         h(

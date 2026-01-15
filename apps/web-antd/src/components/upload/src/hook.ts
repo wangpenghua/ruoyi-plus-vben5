@@ -22,7 +22,7 @@ import { computed, onUnmounted, ref, watch } from 'vue';
 
 import { $t } from '@vben/locales';
 
-import { message, Modal } from 'antdv-next';
+import { Modal } from 'antdv-next';
 import { isFunction, isString } from 'lodash-es';
 
 import { ossInfo } from '#/api/system/oss';
@@ -270,7 +270,7 @@ export function useUpload(
   function beforeUpload(file: FileType) {
     const isLtMax = file.size / 1024 / 1024 < props.maxSize!;
     if (!isLtMax) {
-      message.error($t('component.upload.maxSize', [props.maxSize]));
+      window.message.error($t('component.upload.maxSize', [props.maxSize]));
       return false;
     }
     // 大坑 Safari不支持file-type库 去除文件类型的校验
@@ -301,7 +301,7 @@ export function useUpload(
       });
       info.onSuccess!(res);
       if (props.showSuccessMsg) {
-        message.success($t('component.upload.uploadSuccess'));
+        window.message.success($t('component.upload.uploadSuccess'));
       }
       emit('success', info.file as RcFile, res);
     } catch (error: any) {

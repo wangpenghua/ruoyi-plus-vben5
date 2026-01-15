@@ -8,8 +8,6 @@ import { computed, ref, unref, watch, watchEffect } from 'vue';
 import { useVbenModal } from '@vben/common-ui';
 import { $t as t } from '@vben/locales';
 
-import { message } from 'antdv-next';
-
 import cropperModal from './cropper-modal.vue';
 
 defineOptions({ name: 'CropperAvatar' });
@@ -74,7 +72,7 @@ watch(
 function handleUploadSuccess({ data, source }: any) {
   sourceValue.value = source;
   emit('change', { data, source });
-  message.success(t('component.cropper.uploadSuccess'));
+  window.message.success(t('component.cropper.uploadSuccess'));
 }
 
 const closeModal = () => modalApi.close();

@@ -14,14 +14,7 @@ import { Page, useVbenModal } from '@vben/common-ui';
 import { $t } from '@vben/locales';
 import { getVxePopupContainer } from '@vben/utils';
 
-import {
-  message,
-  Modal,
-  Popconfirm,
-  RadioGroup,
-  Space,
-  Switch,
-} from 'antdv-next';
+import { Modal, Popconfirm, RadioGroup, Space, Switch } from 'antdv-next';
 
 import { useVbenVxeGrid, vxeCheckboxChecked } from '#/adapter/vxe-table';
 import {
@@ -219,7 +212,10 @@ function handleEdit(row: any) {
  * @param row row
  */
 async function handleExportXml(row: any) {
-  const hideLoading = message.loading($t('pages.common.downloadLoading'), 0);
+  const hideLoading = window.message.loading(
+    $t('pages.common.downloadLoading'),
+    0,
+  );
   try {
     const blob = await workflowDefinitionExport(row.id);
     downloadByData(blob, `${row.flowName}-${Date.now()}.json`);
@@ -239,12 +235,12 @@ const [ProcessDefinitionDeployModal, deployModalApi] = useVbenModal({
  */
 function handleDeploy() {
   if (selectedCode.value.length === 0) {
-    message.warning('请先选择流程分类');
+    window.message.warning('请先选择流程分类');
     return;
   }
   const selectedCategory = selectedCode.value[0];
   if (selectedCategory === 0) {
-    message.warning('不可选择根目录进行部署, 请选择子分类');
+    window.message.warning('不可选择根目录进行部署, 请选择子分类');
     return;
   }
   deployModalApi.setData({ category: selectedCategory });

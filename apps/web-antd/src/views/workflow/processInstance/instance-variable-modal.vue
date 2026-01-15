@@ -4,7 +4,7 @@ import { ref } from 'vue';
 import { JsonPreview, useVbenModal } from '@vben/common-ui';
 import { cn, getPopupContainer } from '@vben/utils';
 
-import { message, Modal, Tag } from 'antdv-next';
+import { Modal, Tag } from 'antdv-next';
 
 import { useVbenForm } from '#/adapter/form';
 import { instanceVariable, updateFlowVariable } from '#/api/workflow/instance';
@@ -168,7 +168,7 @@ async function handleSubmit(values: any) {
       } catch (error) {
         console.error(error);
         if (error instanceof Error) {
-          message.error(error.message);
+          window.message.error(error.message);
         }
         throw error;
       }

@@ -22,8 +22,6 @@ import { preferences } from '@vben/preferences';
 import { useAccessStore, useUserStore } from '@vben/stores';
 import { openWindow } from '@vben/utils';
 
-import { message } from 'antdv-next';
-
 import { TenantToggle } from '#/components/tenant-toggle';
 import { $t } from '#/locales';
 import { resetRoutes } from '#/router';
@@ -110,7 +108,7 @@ const notifyStore = useNotifyStore();
 onMounted(() => notifyStore.startListeningMessage());
 
 function handleViewAll() {
-  message.warning('暂未开放');
+  window.message.warning('暂未开放');
 }
 watch(
   () => ({
