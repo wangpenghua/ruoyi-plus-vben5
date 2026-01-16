@@ -15,14 +15,7 @@ import {
   PlusOutlined,
   SyncOutlined,
 } from '@ant-design/icons-vue';
-import {
-  Alert,
-  Input,
-  Modal,
-  Popconfirm,
-  Space,
-  Tooltip,
-} from 'antdv-next';
+import { Alert, Input, Popconfirm, Space, Tooltip } from 'antdv-next';
 
 import { useVbenVxeGrid } from '#/adapter/vxe-table';
 import {
@@ -121,7 +114,7 @@ function handleDownloadExcel() {
 }
 
 function handleRefreshCache() {
-  Modal.confirm({
+  window.modal.confirm({
     title: '提示',
     content: '确认刷新字典类型缓存吗？',
     okButtonProps: {
@@ -171,7 +164,7 @@ watch(searchValue, (value) => {
   <div
     :class="
       cn(
-        'bg-background flex max-h-[100vh] w-[360px] flex-col overflow-y-hidden',
+        'flex max-h-[100vh] w-[360px] flex-col overflow-y-hidden bg-background',
         'rounded-lg',
         'dict-type-card',
       )

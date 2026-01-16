@@ -5,7 +5,7 @@ import { nextTick, onMounted } from 'vue';
 
 import { JsonPreview } from '@vben/common-ui';
 
-import { Button, Input, InputNumber, Modal, Select, Space } from 'antdv-next';
+import { Button, Input, InputNumber, Select, Space } from 'antdv-next';
 
 import { useVbenVxeGrid } from '#/adapter/vxe-table';
 
@@ -248,7 +248,7 @@ function getData() {
   const data = tableApi.grid.getTableData();
   const { fullData } = data;
   console.log(fullData);
-  Modal.info({
+  window.modal.info({
     title: '提示',
     content: (
       <div class="max-h-[350px] overflow-y-auto">

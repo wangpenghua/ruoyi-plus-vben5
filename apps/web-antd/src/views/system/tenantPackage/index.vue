@@ -9,7 +9,7 @@ import { computed } from 'vue';
 import { useAccess } from '@vben/access';
 import { Fallback, Page, useVbenDrawer } from '@vben/common-ui';
 
-import { Modal, Popconfirm, Space } from 'antdv-next';
+import { Popconfirm, Space } from 'antdv-next';
 
 import { useVbenVxeGrid, vxeCheckboxChecked } from '#/adapter/vxe-table';
 import {
@@ -92,7 +92,7 @@ async function handleDelete(row: TenantPackage) {
 function handleMultiDelete() {
   const rows = tableApi.grid.getCheckboxRecords();
   const ids = rows.map((row: TenantPackage) => row.packageId);
-  Modal.confirm({
+  window.modal.confirm({
     title: '提示',
     okType: 'danger',
     content: `确认删除选中的${ids.length}条记录吗？`,

@@ -3,7 +3,7 @@ import type { Rule } from 'antdv-next/es/form';
 
 import { reactive } from 'vue';
 
-import { Alert, Form, Input, Modal } from 'antdv-next';
+import { Alert, Form, Input } from 'antdv-next';
 import { isFunction } from 'lodash-es';
 
 export interface ConfirmModalProps extends Omit<ModalFuncProps, 'visible'> {
@@ -37,7 +37,7 @@ export function confirmDeleteModal(props: ConfirmModalProps) {
   const useForm = Form.useForm;
   const { validate, validateInfos } = useForm(formValue, rulesRef);
 
-  Modal.confirm({
+  window.modal.confirm({
     ...props,
     centered: true,
     content: (

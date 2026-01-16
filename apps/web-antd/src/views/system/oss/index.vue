@@ -14,15 +14,7 @@ import { $t } from '@vben/locales';
 import { stringify } from '@vben/request';
 import { useAccessStore } from '@vben/stores';
 
-import {
-  Image,
-  Modal,
-  Popconfirm,
-  Space,
-  Spin,
-  Switch,
-  Tooltip,
-} from 'antdv-next';
+import { Image, Popconfirm, Space, Spin, Switch, Tooltip } from 'antdv-next';
 
 import {
   addSortParams,
@@ -166,7 +158,7 @@ async function handleDelete(row: OssFile) {
 function handleMultiDelete() {
   const rows = tableApi.grid.getCheckboxRecords();
   const ids = rows.map((row: OssFile) => row.ossId);
-  Modal.confirm({
+  window.modal.confirm({
     title: '提示',
     okType: 'danger',
     content: `确认删除选中的${ids.length}条记录吗？`,

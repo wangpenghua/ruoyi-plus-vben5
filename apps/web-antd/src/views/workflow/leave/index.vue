@@ -7,7 +7,7 @@ import type { VxeGridProps } from '#/adapter/vxe-table';
 
 import { Page, useVbenDrawer, useVbenModal } from '@vben/common-ui';
 
-import { Modal, Popconfirm, Space } from 'antdv-next';
+import { Popconfirm, Space } from 'antdv-next';
 
 import { useVbenVxeGrid, vxeCheckboxChecked } from '#/adapter/vxe-table';
 import { cancelProcessApply } from '#/api/workflow/instance';
@@ -124,7 +124,7 @@ async function handleRevoke(row: Required<LeaveForm>) {
 function handleMultiDelete() {
   const rows = tableApi.grid.getCheckboxRecords();
   const ids = rows.map((row: Required<LeaveForm>) => row.id);
-  Modal.confirm({
+  window.modal.confirm({
     title: '提示',
     okType: 'danger',
     content: `确认删除选中的${ids.length}条记录吗？`,

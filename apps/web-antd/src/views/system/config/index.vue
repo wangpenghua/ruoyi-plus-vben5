@@ -6,7 +6,7 @@ import type { SysConfig } from '#/api/system/config/model';
 
 import { Page, useVbenModal } from '@vben/common-ui';
 
-import { Modal, Popconfirm, Space } from 'antdv-next';
+import { Popconfirm, Space } from 'antdv-next';
 
 import { useVbenVxeGrid, vxeCheckboxChecked } from '#/adapter/vxe-table';
 import {
@@ -93,7 +93,7 @@ async function handleDelete(row: SysConfig) {
 function handleMultiDelete() {
   const rows = tableApi.grid.getCheckboxRecords();
   const ids = rows.map((row: SysConfig) => row.configId);
-  Modal.confirm({
+  window.modal.confirm({
     title: '提示',
     okType: 'danger',
     content: `确认删除选中的${ids.length}条记录吗？`,

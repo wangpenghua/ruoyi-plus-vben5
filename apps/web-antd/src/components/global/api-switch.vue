@@ -3,7 +3,7 @@ import { computed, ref } from 'vue';
 
 import { $t } from '@vben/locales';
 
-import { Modal, Switch } from 'antdv-next';
+import { Switch } from 'antdv-next';
 import { isFunction } from 'lodash-es';
 
 interface Props {
@@ -64,7 +64,7 @@ function confirmUpdate(checked: boolean, lastStatus: boolean) {
     ? props.confirmText(checked)
     : `确认要更新状态吗？`;
 
-  Modal.confirm({
+  window.modal.confirm({
     title: '提示',
     content,
     centered: true,

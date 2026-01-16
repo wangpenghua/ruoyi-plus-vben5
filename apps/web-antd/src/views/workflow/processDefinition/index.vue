@@ -13,7 +13,7 @@ import { useRouter } from 'vue-router';
 import { Page, useVbenModal } from '@vben/common-ui';
 import { $t } from '@vben/locales';
 
-import { Modal, Popconfirm, RadioGroup, Space, Switch } from 'antdv-next';
+import { Popconfirm, RadioGroup, Space, Switch } from 'antdv-next';
 
 import { useVbenVxeGrid, vxeCheckboxChecked } from '#/adapter/vxe-table';
 import {
@@ -127,7 +127,7 @@ async function handleDelete(row: Recordable<any>) {
 function handleMultiDelete() {
   const rows = tableApi.grid.getCheckboxRecords();
   const ids = rows.map((row: any) => row.id);
-  Modal.confirm({
+  window.modal.confirm({
     title: '提示',
     okType: 'danger',
     content: `确认删除选中的${ids.length}条记录吗？`,

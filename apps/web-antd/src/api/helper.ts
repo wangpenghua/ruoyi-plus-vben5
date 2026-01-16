@@ -1,7 +1,5 @@
 import { $t } from '@vben/locales';
 
-import { Modal } from 'antdv-next';
-
 import { useAuthStore } from '#/store';
 
 import { requestClient } from './request';
@@ -83,7 +81,7 @@ export function handleUnauthorizedLogout() {
       if (error instanceof ImpossibleReturn401Exception) {
         lockLogoutRequest = true;
         if (import.meta.env.DEV) {
-          Modal.error({
+          window.modal.error({
             title: '提示',
             centered: true,
             content:

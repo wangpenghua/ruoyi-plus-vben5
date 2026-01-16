@@ -8,7 +8,7 @@ import type { OperationLog } from '#/api/monitor/operlog/model';
 import { Page, useVbenDrawer } from '@vben/common-ui';
 import { $t } from '@vben/locales';
 
-import { Modal, Space } from 'antdv-next';
+import { Space } from 'antdv-next';
 
 import {
   addSortParams,
@@ -124,7 +124,7 @@ function handleClear() {
 async function handleDelete() {
   const rows = tableApi.grid.getCheckboxRecords();
   const ids = rows.map((row: OperationLog) => row.operId);
-  Modal.confirm({
+  window.modal.confirm({
     title: '提示',
     okType: 'danger',
     content: `确认删除选中的${ids.length}条操作日志吗？`,

@@ -7,7 +7,7 @@ import { $t } from '@vben/locales';
 import { useUserStore } from '@vben/stores';
 import { buildUUID } from '@vben/utils';
 
-import { Modal, notification } from 'antdv-next';
+import { notification } from 'antdv-next';
 import dayjs from 'dayjs';
 import { defineStore } from 'pinia';
 
@@ -93,7 +93,7 @@ export const useNotifyStore = defineStore(
     function setRead(item: NotificationItem) {
       !item.isRead && (item.isRead = true);
       // 显示信息
-      Modal.info({
+      window.modal.info({
         title: item.title,
         content: item.message,
       });

@@ -21,7 +21,7 @@ import {
   UsergroupDeleteOutlined,
   UserOutlined,
 } from '@ant-design/icons-vue';
-import { Dropdown, Menu, MenuItem, Modal, Space } from 'antdv-next';
+import { Dropdown, Menu, MenuItem, Space } from 'antdv-next';
 
 import {
   cancelProcessApply,
@@ -68,7 +68,7 @@ const showButtonOther = computed(() => {
 // 进行中 可以撤销
 const revocable = computed(() => props.task?.flowStatus === 'waiting');
 async function handleCancel() {
-  Modal.confirm({
+  window.modal.confirm({
     title: '提示',
     content: '确定要撤销该申请吗？',
     centered: true,
@@ -102,7 +102,7 @@ function handleEdit() {
 }
 
 function handleRemove() {
-  Modal.confirm({
+  window.modal.confirm({
     title: '提示',
     content: '确定删除该申请吗？',
     centered: true,
@@ -213,7 +213,7 @@ const [AddSignatureModal, addSignatureModalApi] = useVbenModal({
 function handleAddSignature(userList: User[]) {
   if (userList.length === 0) return;
   const userIds = userList.map((user) => user.userId);
-  Modal.confirm({
+  window.modal.confirm({
     title: '提示',
     content: '确认加签吗?',
     centered: true,
@@ -230,7 +230,7 @@ const [ReductionSignatureModal, reductionSignatureModalApi] = useVbenModal({
 function handleReductionSignature(userList: User[]) {
   if (userList.length === 0) return;
   const userIds = userList.map((user) => user.userId);
-  Modal.confirm({
+  window.modal.confirm({
     title: '提示',
     content: '确认减签吗?',
     centered: true,
@@ -261,7 +261,7 @@ function handleUpdateAssignee(userList: User[]) {
   if (userList.length === 0) return;
   const current = userList[0];
   if (!current) return;
-  Modal.confirm({
+  window.modal.confirm({
     title: '修改办理人',
     content: `确定修改办理人为${current?.nickName}吗?`,
     centered: true,
@@ -292,7 +292,7 @@ const showMultiActions = computed(() => {
       cn(
         'absolute bottom-0 left-0',
         'border-t-solid border-t-[1px]',
-        'bg-background w-full p-3',
+        'w-full bg-background p-3',
       )
     "
   >

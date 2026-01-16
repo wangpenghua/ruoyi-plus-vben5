@@ -6,7 +6,7 @@ import type { Spel } from '#/api/workflow/spel/model';
 
 import { Page, useVbenDrawer } from '@vben/common-ui';
 
-import { Modal, Popconfirm, Space } from 'antdv-next';
+import { Popconfirm, Space } from 'antdv-next';
 
 import { useVbenVxeGrid, vxeCheckboxChecked } from '#/adapter/vxe-table';
 import { spelDelete, spelList } from '#/api/workflow/spel';
@@ -80,7 +80,7 @@ async function handleDelete(row: Spel) {
 function handleMultiDelete() {
   const rows = tableApi.grid.getCheckboxRecords();
   const ids = rows.map((row: Spel) => row.id);
-  Modal.confirm({
+  window.modal.confirm({
     title: '提示',
     okType: 'danger',
     content: `确认删除选中的${ids.length}条记录吗？`,

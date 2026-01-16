@@ -8,7 +8,7 @@ import { computed, ref } from 'vue';
 
 import { useVbenModal } from '@vben/common-ui';
 
-import { Descriptions, Modal } from 'antdv-next';
+import { Descriptions } from 'antdv-next';
 
 import {
   getTaskByTaskId,
@@ -57,7 +57,7 @@ const [TransferModal, transferModalApi] = useVbenModal({
 function handleTransfer(userList: User[]) {
   if (userList.length === 0 || !taskInfo.value) return;
   const current = userList[0];
-  Modal.confirm({
+  window.modal.confirm({
     title: '转办',
     content: `确定转办给${current?.nickName}吗?`,
     centered: true,
@@ -78,7 +78,7 @@ function handleTermination() {
   if (!taskInfo.value) {
     return;
   }
-  Modal.confirm({
+  window.modal.confirm({
     title: '审批终止',
     content: '确定终止当前审批流程吗？',
     centered: true,
@@ -96,7 +96,7 @@ const [AddSignatureModal, addSignatureModalApi] = useVbenModal({
 function handleAddSignature(userList: User[]) {
   if (userList.length === 0 || !taskInfo.value) return;
   const userIds = userList.map((user) => user.userId);
-  Modal.confirm({
+  window.modal.confirm({
     title: '提示',
     content: '确认加签吗?',
     centered: true,
@@ -116,7 +116,7 @@ const [ReductionSignatureModal, reductionSignatureModalApi] = useVbenModal({
 function handleReductionSignature(userList: User[]) {
   if (userList.length === 0 || !taskInfo.value) return;
   const userIds = userList.map((user) => user.userId);
-  Modal.confirm({
+  window.modal.confirm({
     title: '提示',
     content: '确认减签吗?',
     centered: true,

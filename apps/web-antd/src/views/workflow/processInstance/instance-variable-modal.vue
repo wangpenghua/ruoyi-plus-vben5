@@ -4,7 +4,7 @@ import { ref } from 'vue';
 import { JsonPreview, useVbenModal } from '@vben/common-ui';
 import { cn, getPopupContainer } from '@vben/utils';
 
-import { Modal, Tag } from 'antdv-next';
+import { Tag } from 'antdv-next';
 
 import { useVbenForm } from '#/adapter/form';
 import { instanceVariable, updateFlowVariable } from '#/api/workflow/instance';
@@ -141,7 +141,7 @@ const [Form, formApi] = useVbenForm({
   },
   handleSubmit: async (values) => {
     console.log(values);
-    Modal.confirm({
+    window.modal.confirm({
       title: '修改流程变量',
       content: '确认修改流程变量吗？',
       centered: true,

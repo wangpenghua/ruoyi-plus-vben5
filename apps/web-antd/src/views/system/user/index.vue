@@ -14,7 +14,7 @@ import { EnableStatus, SUPERADMIN_USER_ID } from '@vben/constants';
 import { $t } from '@vben/locales';
 import { preferences } from '@vben/preferences';
 
-import { Avatar, Dropdown, Modal, Popconfirm, Space } from 'antdv-next';
+import { Avatar, Dropdown, Popconfirm, Space } from 'antdv-next';
 
 import { useVbenVxeGrid, vxeCheckboxChecked } from '#/adapter/vxe-table';
 import {
@@ -145,7 +145,7 @@ async function handleDelete(row: User) {
 function handleMultiDelete() {
   const rows = tableApi.grid.getCheckboxRecords();
   const ids = rows.map((row: User) => row.userId);
-  Modal.confirm({
+  window.modal.confirm({
     title: '提示',
     okType: 'danger',
     content: `确认删除选中的${ids.length}条记录吗？`,

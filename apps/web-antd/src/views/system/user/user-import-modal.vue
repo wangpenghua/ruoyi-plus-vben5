@@ -6,7 +6,7 @@ import { h, ref, unref } from 'vue';
 import { useVbenModal } from '@vben/common-ui';
 import { ExcelIcon, InBoxIcon } from '@vben/icons';
 
-import { Modal, Switch, Upload } from 'antdv-next';
+import { Switch, Upload } from 'antdv-next';
 
 import { downloadImportTemplate, userImportData } from '#/api/system/user';
 import { commonDownloadExcel } from '#/utils/file/download';
@@ -35,11 +35,11 @@ async function handleSubmit() {
       updateSupport: unref(checked),
     };
     const { code, msg } = await userImportData(data);
-    let modal = Modal.success;
+    let modal = window.modal.success;
     if (code === 200) {
       emit('reload');
     } else {
-      modal = Modal.error;
+      modal = window.modal.error;
     }
     handleCancel();
     modal({

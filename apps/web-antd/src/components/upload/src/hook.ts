@@ -22,7 +22,6 @@ import { computed, onUnmounted, ref, watch } from 'vue';
 
 import { $t } from '@vben/locales';
 
-import { Modal } from 'antdv-next';
 import { isFunction, isString } from 'lodash-es';
 
 import { ossInfo } from '#/api/system/oss';
@@ -245,7 +244,7 @@ export function useUpload(
     }
 
     return new Promise<boolean>((resolve) => {
-      Modal.confirm({
+      window.modal.confirm({
         title: $t('pages.common.tip'),
         content: $t('component.upload.confirmDelete', [currentFile.name]),
         okButtonProps: { danger: true },

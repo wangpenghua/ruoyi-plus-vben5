@@ -8,7 +8,7 @@ import { useRoute } from 'vue-router';
 
 import { Page, useVbenDrawer } from '@vben/common-ui';
 
-import { Modal, Popconfirm, Space } from 'antdv-next';
+import { Popconfirm, Space } from 'antdv-next';
 
 import { useVbenVxeGrid, vxeCheckboxChecked } from '#/adapter/vxe-table';
 import {
@@ -93,7 +93,7 @@ async function handleAuthCancel(record: User) {
 function handleMultipleAuthCancel() {
   const rows = tableApi.grid.getCheckboxRecords();
   const ids = rows.map((row: User) => row.userId);
-  Modal.confirm({
+  window.modal.confirm({
     title: '提示',
     okType: 'danger',
     content: `确认取消选中的${ids.length}条授权记录吗？`,
