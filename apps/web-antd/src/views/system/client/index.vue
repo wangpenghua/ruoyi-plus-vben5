@@ -6,6 +6,7 @@ import type { Client } from '#/api/system/client/model';
 
 import { useAccess } from '@vben/access';
 import { Page, useVbenDrawer } from '@vben/common-ui';
+import { DEFAULT_CLIENT_ID, EnableStatus } from '@vben/constants';
 
 import { Modal, Popconfirm, Space } from 'antdv-next';
 
@@ -16,7 +17,7 @@ import {
   clientList,
   clientRemove,
 } from '#/api/system/client';
-import { TableSwitch } from '#/components/table';
+import { ApiSwitch } from '#/components/global';
 import { commonDownloadExcel } from '#/utils/file/download';
 
 import clientDrawer from './client-drawer.vue';
@@ -108,6 +109,12 @@ function handleDownloadExcel() {
 }
 
 const { hasAccessByCodes } = useAccess();
+async function handleChangeStatus(checked: boolean, row: Client) {
+  await clientChangeStatus({
+    clientId: row.id,
+    status: checked ? EnableStatus.Enable : EnableStatus.Disable,
+  });
+}
 </script>
 
 <template>
@@ -142,10 +149,13 @@ const { hasAccessByCodes } = useAccess();
       <template #status="{ row }">
         <!-- pc不允许禁用 禁用了直接登录不了 应该设置disabled -->
         <!-- 登录提示: 认证权限类型已禁用 -->
-        <TableSwitch
-          v-model:value="row.status"
-          :api="() => clientChangeStatus(row)"
-          :disabled="row.id === 1 || !hasAccessByCodes(['system:client:edit'])"
+        <ApiSwitch
+          :value="row.status === EnableStatus.Enable"
+          :api="(checked) => handleChangeStatus(checked, row)"
+          :disabled="
+            row.id === DEFAULT_CLIENT_ID ||
+            !hasAccessByCodes(['system:client:edit'])
+          "
           @reload="tableApi.query()"
         />
       </template>

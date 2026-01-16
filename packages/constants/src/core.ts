@@ -53,6 +53,11 @@ export const SUPERADMIN_ROLE_KEY = 'superadmin';
 export const ADMIN_ROLE_KEY = 'admin';
 
 /**
+ * 默认客户端ID
+ */
+export const DEFAULT_CLIENT_ID = 1;
+
+/**
  * 对应 字典-S系统开关的状态
  */
 export const EnableStatus = {
