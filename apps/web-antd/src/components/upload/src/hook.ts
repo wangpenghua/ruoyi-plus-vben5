@@ -44,12 +44,9 @@ export function useImagePreview() {
   const previewVisible = ref(false);
   // 预览的图片 url/base64
   const previewImage = ref('');
-  // 预览的图片名称
-  const previewTitle = ref('');
 
-  function handleCancel() {
-    previewVisible.value = false;
-    previewTitle.value = '';
+  function handleOpenChange(isOpen: boolean) {
+    previewVisible.value = isOpen;
   }
 
   async function handlePreview(file: UploadFile) {
@@ -64,16 +61,21 @@ export function useImagePreview() {
     const url = file.url ?? '';
     previewImage.value = url || file.preview || '';
     previewVisible.value = true;
-    previewTitle.value =
-      file.name || url.slice(Math.max(0, url.lastIndexOf('/') + 1));
+  }
+
+  function handleAfterOpenChange(open: boolean) {
+    if (!open) {
+      previewVisible.value = false;
+      previewImage.value = '';
+    }
   }
 
   return {
     previewVisible,
     previewImage,
-    previewTitle,
-    handleCancel,
+    handleOpenChange,
     handlePreview,
+    handleAfterOpenChange,
   };
 }
 

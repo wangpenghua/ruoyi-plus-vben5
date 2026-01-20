@@ -10,7 +10,7 @@ import type { BaseUploadProps, UploadEmits } from './props';
 import { $t, I18nT } from '@vben/locales';
 
 import { PlusOutlined, UploadOutlined } from '@ant-design/icons-vue';
-import { Image, ImagePreviewGroup, Upload } from 'antdv-next';
+import { Image, Upload } from 'antdv-next';
 import { isFunction } from 'lodash-es';
 
 import { uploadApi } from '#/api';
@@ -65,8 +65,13 @@ const {
   customRequest,
 } = useUpload(props, emit, ossIdList, 'image');
 
-const { previewVisible, previewImage, handleCancel, handlePreview } =
-  useImagePreview();
+const {
+  previewVisible,
+  previewImage,
+  handleOpenChange,
+  handlePreview,
+  handleAfterOpenChange,
+} = useImagePreview();
 
 function currentPreview(file: UploadFile) {
   // 有自定义预览逻辑走自定义
@@ -141,14 +146,16 @@ function currentPreview(file: UploadFile) {
       </I18nT>
     </slot>
 
-    <ImagePreviewGroup
+    <Image
+      v-if="previewImage"
+      class="hidden"
+      :src="previewImage"
       :preview="{
-        visible: previewVisible,
-        onVisibleChange: handleCancel,
+        open: previewVisible,
+        onOpenChange: handleOpenChange,
+        afterOpenChange: handleAfterOpenChange,
       }"
-    >
-      <Image class="hidden" :src="previewImage" />
-    </ImagePreviewGroup>
+    />
   </div>
 </template>
 
