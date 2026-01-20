@@ -271,7 +271,7 @@ export function useUpload(
     return file;
   };
 
-  const uploadAbort = new AbortController();
+  const abortList: (() => void)[] = [];
   /**
    * 自定义上传实现
    * @param info
@@ -291,6 +291,7 @@ export function useUpload(
         const percent = Math.trunc((e.loaded / e.total!) * 100);
         info.onProgress!({ percent });
       });
+      abortList.push(apiInstance.abort);
       const res = await apiInstance;
       info.onSuccess!(res);
       if (props.showSuccessMsg) {
@@ -304,7 +305,8 @@ export function useUpload(
   };
 
   onUnmounted(() => {
-    props.abortOnUnmounted && uploadAbort.abort();
+    props.abortOnUnmounted && abortList.forEach((abort) => abort());
+    abortList.length = 0;
   });
 
   /**
