@@ -52,8 +52,8 @@ const props = withDefaults(defineProps<ImageUploadProps>(), {
 const emit = defineEmits<UploadEmits>();
 
 // 双向绑定 ossId
-const ossIdList = defineModel<string | string[]>('value', {
-  default: () => [],
+const ossIdList = defineModel<string>('value', {
+  default: '',
 });
 
 const {

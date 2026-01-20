@@ -88,7 +88,7 @@ export function useImagePreview() {
 export function useUpload(
   props: Readonly<BaseUploadProps>,
   emit: UploadEmits,
-  bindValue: ModelRef<string | string[]>,
+  bindValue: ModelRef<string>,
   uploadType: UploadType,
 ) {
   // 组件内部维护fileList
@@ -202,11 +202,9 @@ export function useUpload(
           bindValue.value = ossId;
         } else {
           // 给默认值
-          if (!Array.isArray(bindValue.value)) {
-            bindValue.value = [];
-          }
-          // 直接使用.value无法触发useForm的更新(原生是正常的) 需要修改地址
-          bindValue.value = [...bindValue.value, ossId];
+          const validIds = bindValue.value ? bindValue.value.split(',') : [];
+          validIds.push(ossId);
+          bindValue.value = validIds.join(',');
         }
         break;
       }
@@ -224,10 +222,12 @@ export function useUpload(
       if (props.maxCount === 1) {
         bindValue.value = '';
       } else {
-        (bindValue.value as string[]).splice(
-          bindValue.value.indexOf(currentFile.uid),
-          1,
-        );
+        const validIds = bindValue.value ? bindValue.value.split(',') : [];
+        const index = validIds.indexOf(currentFile.uid);
+        if (index !== -1) {
+          validIds.splice(index, 1);
+          bindValue.value = validIds.join(',');
+        }
       }
       // 触发remove事件
       emit('remove', currentFile);
@@ -316,7 +316,7 @@ export function useUpload(
   watch(
     () => bindValue.value,
     async (value) => {
-      if (value.length === 0) {
+      if (!value) {
         // 清空绑定值时，同时清空innerFileList，避免外部使用时还能读取到
         innerFileList.value = [];
         return;
@@ -329,7 +329,8 @@ export function useUpload(
         return;
       }
 
-      const resp = await ossInfo(value);
+      const ids = value.split(',');
+      const resp = await ossInfo(ids);
       function transformFile(info: OssFile) {
         const cb = { type: 'info', response: info } as const;
 
@@ -353,17 +354,14 @@ export function useUpload(
       // 多文件
       // 单文件查到了也会走这里的逻辑 filter会报错 需要maxCount判断处理
       if (
-        resp.length !== value.length &&
+        resp.length !== ids.length &&
         !props.keepMissingId &&
         props.maxCount !== 1
       ) {
-        // 给默认值
-        if (!Array.isArray(bindValue.value)) {
-          bindValue.value = [];
-        }
-        bindValue.value = bindValue.value.filter((ossId) =>
+        const validIds = ids.filter((ossId) =>
           resp.map((res) => res.ossId).includes(ossId),
         );
+        bindValue.value = validIds.join(',');
       }
     },
     { immediate: true },
