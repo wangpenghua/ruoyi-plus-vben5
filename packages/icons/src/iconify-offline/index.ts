@@ -1,14 +1,12 @@
 import { createIconifyOfflineIcon } from '@vben-core/icons';
 
 import githubOutlined from '@iconify/icons-ant-design/github-outlined';
-import inboxIcon from '@iconify/icons-ant-design/inbox-outlined';
 import userOutlined from '@iconify/icons-ant-design/user-outlined';
 import ucIcon from '@iconify/icons-arcticons/uc-browser';
 import defaultFileIcon from '@iconify/icons-bx/file';
 import sqlIcon from '@iconify/icons-carbon/sql';
 import linuxIcon from '@iconify/icons-devicon/linux';
 import windowsIcon from '@iconify/icons-devicon/windows8';
-import alipayIcon from '@iconify/icons-fa-brands/alipay';
 import androidIcon from '@iconify/icons-flat-color-icons/android-os';
 import folderIcon from '@iconify/icons-flat-color-icons/folder';
 import defaultOsIcon from '@iconify/icons-ic/outline-computer';
@@ -27,14 +25,11 @@ import defaultBrowserIcon from '@iconify/icons-ph/browser-duotone';
 import baiduIcon from '@iconify/icons-ri/baidu-fill';
 import dingdingFill from '@iconify/icons-ri/dingding-fill';
 import dingtalkIcon from '@iconify/icons-ri/dingding-line';
-import taobaoIconFill from '@iconify/icons-ri/taobao-fill';
 import giteeIcon from '@iconify/icons-simple-icons/gitee';
 import qqIcon from '@iconify/icons-simple-icons/tencentqq';
 import javaIcon from '@iconify/icons-skill-icons/java-light';
 import tsIcon from '@iconify/icons-skill-icons/typescript';
 import xmlIcon from '@iconify/icons-tabler/file-type-xml';
-import githubOAuthIcon from '@iconify/icons-uiw/github';
-import excelIcon from '@iconify/icons-vscode-icons/file-type-excel';
 import osxIcon from '@iconify/icons-wpf/macos';
 
 import './menu-icons';
@@ -50,27 +45,7 @@ export const UserOutlined = createIconifyOfflineIcon(
   userOutlined,
 );
 
-// 用户管理 导入
-// Excel图标
-export const ExcelIcon = createIconifyOfflineIcon(
-  'vscode-icons:file-type-excel',
-  excelIcon,
-);
-// 拖拽上传图标
-export const InBoxIcon = createIconifyOfflineIcon(
-  'ant-design:inbox-outlined',
-  inboxIcon,
-);
-
 // 第三方登录相关图标
-export const TaobaoIcon = createIconifyOfflineIcon(
-  'ri:taobao-fill',
-  taobaoIconFill,
-);
-export const AlipayIcon = createIconifyOfflineIcon(
-  'fa-brands:alipay',
-  alipayIcon,
-);
 export const DingdingIcon = createIconifyOfflineIcon(
   'ri:dingding-fill',
   dingdingFill,
@@ -78,10 +53,6 @@ export const DingdingIcon = createIconifyOfflineIcon(
 export const GiteeIcon = createIconifyOfflineIcon(
   'simple-icons:gitee',
   giteeIcon,
-);
-export const GithubOAuthIcon = createIconifyOfflineIcon(
-  'uiw:github',
-  githubOAuthIcon,
 );
 
 // 系统相关图标

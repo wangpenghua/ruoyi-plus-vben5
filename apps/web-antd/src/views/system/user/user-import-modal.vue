@@ -4,8 +4,8 @@ import type { UploadFile } from 'antdv-next';
 import { h, ref, unref } from 'vue';
 
 import { useVbenModal } from '@vben/common-ui';
-import { ExcelIcon, InBoxIcon } from '@vben/icons';
 
+import { InboxOutlined } from '@ant-design/icons-vue';
 import { Switch, Upload } from 'antdv-next';
 
 import { downloadImportTemplate, userImportData } from '#/api/system/user';
@@ -80,7 +80,7 @@ function handleCancel() {
       accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
     >
       <p class="ant-upload-drag-icon flex items-center justify-center">
-        <InBoxIcon class="size-[48px] text-primary" />
+        <InboxOutlined class="size-[48px] text-primary" />
       </p>
       <p class="ant-upload-text">点击或者拖拽到此处上传文件</p>
     </UploadDragger>
@@ -92,7 +92,7 @@ function handleCancel() {
           @click="commonDownloadExcel(downloadImportTemplate, '用户导入模板')"
         >
           <div class="flex items-center gap-[4px]">
-            <ExcelIcon />
+            <span class="icon-[vscode-icons--file-type-excel]"></span>
             <span>下载模板</span>
           </div>
         </a-button>

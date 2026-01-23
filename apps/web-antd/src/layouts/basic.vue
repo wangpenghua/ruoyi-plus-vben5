@@ -10,7 +10,6 @@ import {
   CircleHelp,
   GiteeIcon,
   GitHubOutlined,
-  UserOutlined,
 } from '@vben/icons';
 import {
   BasicLayout,
@@ -21,6 +20,8 @@ import {
 import { preferences } from '@vben/preferences';
 import { useAccessStore, useUserStore } from '@vben/stores';
 import { openWindow } from '@vben/utils';
+
+import { UserOutlined } from '@ant-design/icons-vue';
 
 import { TenantToggle } from '#/components/tenant-toggle';
 import { $t } from '#/locales';

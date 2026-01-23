@@ -1,15 +1,10 @@
 import type { Component, CSSProperties } from 'vue';
 
-import { markRaw, ref } from 'vue';
+import { ref } from 'vue';
 
 import { DEFAULT_TENANT_ID } from '@vben/constants';
-import {
-  GiteeIcon,
-  GithubOAuthIcon,
-  SvgMaxKeyIcon,
-  SvgTopiamIcon,
-  SvgWechatIcon,
-} from '@vben/icons';
+import { VbenIcon } from '@vben/icons';
+import { cn } from '@vben/utils';
 
 import { createGlobalState } from '@vueuse/core';
 
@@ -69,32 +64,38 @@ export async function handleAuthBinding(source: string) {
  */
 export const accountBindList: BindItem[] = [
   {
-    avatar: markRaw(GiteeIcon),
+    avatar: (
+      <span
+        class={cn('icon-[simple-icons--gitee]', 'size-6')}
+        style={{ color: '#c71d23' }}
+      />
+    ),
     description: '绑定Gitee账号',
     source: 'gitee',
     title: 'Gitee',
-    style: { color: '#c71d23' },
   },
   {
-    avatar: markRaw(GithubOAuthIcon),
+    avatar: (
+      <span class={cn('icon-[fa--github-alt]', 'text-[#333]', 'size-6')} />
+    ),
     description: '绑定Github账号',
     source: 'github',
     title: 'Github',
   },
   {
-    avatar: markRaw(SvgMaxKeyIcon),
+    avatar: <VbenIcon icon={'svg:max-key'} />,
     description: '绑定MaxKey账号',
     source: 'maxkey',
     title: 'MaxKey',
   },
   {
-    avatar: markRaw(SvgTopiamIcon),
+    avatar: <VbenIcon icon={'svg:topiam'} />,
     description: '绑定topiam账号',
     source: 'topiam',
     title: 'Topiam',
   },
   {
-    avatar: markRaw(SvgWechatIcon),
+    avatar: <VbenIcon icon={'svg:wechat'} />,
     description: '绑定wechat账号',
     source: 'wechat',
     title: 'Wechat',
