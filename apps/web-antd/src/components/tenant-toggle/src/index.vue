@@ -138,7 +138,6 @@ function filterOption(input: string, option: TenantOption) {
 <template>
   <div v-if="showToggle" class="mr-[8px] hidden md:block">
     <Select
-      variant="outlined"
       v-model:value="selected"
       :disabled="loading"
       :field-names="{ label: 'companyName', value: 'tenantId' }"
@@ -147,6 +146,7 @@ function filterOption(input: string, option: TenantOption) {
       :placeholder="$t('component.tenantToggle.placeholder')"
       allow-clear
       class="w-60"
+      :popup-style="{ position: 'fixed' }"
       show-search
       @clear="handleClear"
       @select="handleSelect"
