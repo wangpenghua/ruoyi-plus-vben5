@@ -2,7 +2,6 @@ import { createIconifyOfflineIcon } from '@vben-core/icons';
 
 import githubOutlined from '@iconify/icons-ant-design/github-outlined';
 import userOutlined from '@iconify/icons-ant-design/user-outlined';
-import ucIcon from '@iconify/icons-arcticons/uc-browser';
 import defaultFileIcon from '@iconify/icons-bx/file';
 import sqlIcon from '@iconify/icons-carbon/sql';
 import linuxIcon from '@iconify/icons-devicon/linux';
@@ -10,23 +9,12 @@ import windowsIcon from '@iconify/icons-devicon/windows8';
 import androidIcon from '@iconify/icons-flat-color-icons/android-os';
 import folderIcon from '@iconify/icons-flat-color-icons/folder';
 import defaultOsIcon from '@iconify/icons-ic/outline-computer';
-import chromeIcon from '@iconify/icons-logos/chrome';
-import firefoxIcon from '@iconify/icons-logos/firefox';
-import edgeIcon from '@iconify/icons-logos/microsoft-edge';
-import operaIcon from '@iconify/icons-logos/opera';
-import quarkIcon from '@iconify/icons-logos/quarkus-icon';
-import safariIcon from '@iconify/icons-logos/safari';
 import vueIcon from '@iconify/icons-logos/vue';
 import iphoneIcon from '@iconify/icons-majesticons/iphone-x-apps-line';
 import menuIcon from '@iconify/icons-material-symbols/menu';
 import okButtonIcon from '@iconify/icons-mdi/button-pointer';
-import micromessengerIcon from '@iconify/icons-mdi/wechat';
-import defaultBrowserIcon from '@iconify/icons-ph/browser-duotone';
-import baiduIcon from '@iconify/icons-ri/baidu-fill';
 import dingdingFill from '@iconify/icons-ri/dingding-fill';
-import dingtalkIcon from '@iconify/icons-ri/dingding-line';
 import giteeIcon from '@iconify/icons-simple-icons/gitee';
-import qqIcon from '@iconify/icons-simple-icons/tencentqq';
 import javaIcon from '@iconify/icons-skill-icons/java-light';
 import tsIcon from '@iconify/icons-skill-icons/typescript';
 import xmlIcon from '@iconify/icons-tabler/file-type-xml';
@@ -74,42 +62,6 @@ export const IPhoneIcon = createIconifyOfflineIcon(
 export const DefaultOsIcon = createIconifyOfflineIcon(
   'ic:outline-computer',
   defaultOsIcon,
-);
-
-// 浏览器相关图标
-export const ChromeIcon = createIconifyOfflineIcon('logos:chrome', chromeIcon);
-export const EdgeIcon = createIconifyOfflineIcon(
-  'logos:microsoft-edge',
-  edgeIcon,
-);
-export const FirefoxIcon = createIconifyOfflineIcon(
-  'logos:firefox',
-  firefoxIcon,
-);
-export const OperaIcon = createIconifyOfflineIcon('logos:opera', operaIcon);
-export const SafariIcon = createIconifyOfflineIcon('logos:safari', safariIcon);
-export const MicromessengerIcon = createIconifyOfflineIcon(
-  'mdi:wechat',
-  micromessengerIcon,
-);
-export const QuarkIcon = createIconifyOfflineIcon(
-  'logos:quarkus-icon',
-  quarkIcon,
-);
-export const QQIcon = createIconifyOfflineIcon(
-  'simple-icons:tencentqq',
-  qqIcon,
-);
-export const DingtalkIcon = createIconifyOfflineIcon(
-  'ri:dingding-line',
-  dingtalkIcon,
-);
-export const UcIcon = createIconifyOfflineIcon('arcticons:uc-browser', ucIcon);
-export const BaiduIcon = createIconifyOfflineIcon('ri:baidu-fill', baiduIcon);
-// 未知浏览器图标
-export const DefaultBrowserIcon = createIconifyOfflineIcon(
-  'ph:browser-duotone',
-  defaultBrowserIcon,
 );
 
 // 菜单类型 目录/按钮/菜单

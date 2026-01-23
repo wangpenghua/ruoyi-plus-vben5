@@ -46,7 +46,12 @@ export const columns: VxeGridProps['columns'] = [
     field: 'browser',
     slots: {
       default: ({ row }) => {
-        return renderBrowserIcon(row.browser, true) as VNode;
+        return (
+          <div class="flex items-center justify-center gap-[6px]">
+            {renderBrowserIcon(row.browser, 'shrink-0')}
+            {row.browser}
+          </div>
+        );
       },
     },
   },

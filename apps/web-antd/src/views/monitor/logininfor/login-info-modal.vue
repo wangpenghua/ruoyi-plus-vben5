@@ -67,7 +67,12 @@ const items = computed<DescriptionsProps['items']>(() => {
     },
     {
       label: '浏览器',
-      content: renderBrowserIcon(data.browser),
+      content: (
+        <div class="flex items-center justify-center gap-[6px]">
+          {renderBrowserIcon(data.browser, 'shrink-0')}
+          {data.browser}
+        </div>
+      ),
     },
   ];
 });

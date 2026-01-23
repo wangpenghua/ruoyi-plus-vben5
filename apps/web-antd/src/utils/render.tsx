@@ -8,25 +8,15 @@ import { h } from 'vue';
 import { JsonPreview } from '@vben/common-ui';
 import {
   AndroidIcon,
-  BaiduIcon,
-  ChromeIcon,
-  DefaultBrowserIcon,
   DefaultOsIcon,
-  DingtalkIcon,
-  EdgeIcon,
-  FirefoxIcon,
   IconifyIcon,
   IPhoneIcon,
   LinuxIcon,
-  MicromessengerIcon,
-  OperaIcon,
   OSXIcon,
-  QuarkIcon,
-  SafariIcon,
-  SvgQQIcon,
-  UcIcon,
+  VbenIcon,
   WindowsIcon,
 } from '@vben/icons';
+import { cn } from '@vben/utils';
 
 import { Tag } from 'antdv-next';
 
@@ -199,20 +189,22 @@ const osOptions = [
  * cn.hutool.http.useragent -> browers
  */
 const browserOptions = [
-  { icon: ChromeIcon, value: 'chrome' },
-  { icon: EdgeIcon, value: 'edge' },
-  { icon: FirefoxIcon, value: 'firefox' },
-  { icon: OperaIcon, value: 'opera' },
-  { icon: SafariIcon, value: 'safari' },
-  { icon: MicromessengerIcon, value: 'micromessenger' },
-  { icon: MicromessengerIcon, value: 'windowswechat' },
-  { icon: QuarkIcon, value: 'quark' },
-  { icon: MicromessengerIcon, value: 'wxwork' },
-  { icon: SvgQQIcon, value: 'qq' },
-  { icon: DingtalkIcon, value: 'dingtalk' },
-  { icon: UcIcon, value: 'uc' },
-  { icon: BaiduIcon, value: 'baidu' },
+  { icon: 'icon-[logos--chrome]', value: 'chrome' },
+  { icon: 'icon-[logos--microsoft-edge]', value: 'edge' },
+  { icon: 'icon-[logos--firefox]', value: 'firefox' },
+  { icon: 'icon-[logos--opera]', value: 'opera' },
+  { icon: 'icon-[logos--safari]', value: 'safari' },
+  { icon: 'icon-[mdi--wechat]', value: 'micromessenger' },
+  { icon: 'icon-[mdi--wechat]', value: 'windowswechat' },
+  { icon: 'icon-[logos--quarkus-icon]', value: 'quark' },
+  { icon: 'icon-[mdi--wechat]', value: 'wxwork' },
+  { icon: 'svg:qq', value: 'qq', type: 'offline' },
+  { icon: 'icon-[ri--dingding-line]', value: 'dingtalk' },
+  { icon: 'icon-[arcticons--uc-browser]', value: 'uc' },
+  { icon: 'icon-[ri--baidu-fill]', value: 'baidu' },
 ];
+
+const DefaultBrowserIcon = 'icon-[ph--browser-duotone]';
 
 export function renderOsIcon(os: string, center = false) {
   if (!os) {
@@ -229,13 +221,21 @@ export function renderOsIcon(os: string, center = false) {
   return renderIconSpan(icon, os, center, '5px');
 }
 
-export function renderBrowserIcon(browser: string, center = false) {
+export function renderBrowserIcon(browser: string, className?: string) {
   if (!browser) {
     return;
   }
   const current = browserOptions.find((item) =>
     browser.toLocaleLowerCase().includes(item.value),
   );
-  const icon = current ? current.icon : DefaultBrowserIcon;
-  return renderIconSpan(icon, browser, center, '5px');
+  // TODO: 需要优化
+  if (!current) {
+    return <span class={cn(DefaultBrowserIcon, className)} />;
+  }
+  // support offline icon
+  const icon = current.icon;
+  if (current.type === 'offline') {
+    return <VbenIcon icon={icon} />;
+  }
+  return <span class={cn(icon, className)} />;
 }
