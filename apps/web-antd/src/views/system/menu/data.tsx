@@ -4,7 +4,7 @@ import type { VxeGridProps } from '#/adapter/vxe-table';
 import { h } from 'vue';
 
 import { DictEnum } from '@vben/constants';
-import { FolderIcon, MenuIcon, OkButtonIcon, VbenIcon } from '@vben/icons';
+import { VbenIcon } from '@vben/icons';
 import { $t } from '@vben/locales';
 import { getPopupContainer } from '@vben/utils';
 
@@ -51,10 +51,19 @@ export const yesNoOptions = [
 ];
 
 // （M目录 C菜单 F按钮）
-const menuTypes = {
-  C: { icon: MenuIcon, value: '菜单' },
-  F: { icon: OkButtonIcon, value: '按钮' },
-  M: { icon: FolderIcon, value: '目录' },
+export const menuTypes = {
+  C: {
+    icon: <span class="icons-[flat-color-icons--folder]"></span>,
+    value: '菜单',
+  },
+  F: {
+    icon: <span class="icons-[mdi--button-pointer]"></span>,
+    value: '按钮',
+  },
+  M: {
+    icon: <span class="icons-[material-symbols--menu]"></span>,
+    value: '目录',
+  },
 };
 export const columns: VxeGridProps['columns'] = [
   {
