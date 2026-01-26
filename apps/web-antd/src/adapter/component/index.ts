@@ -13,8 +13,6 @@ import { computed, defineAsyncComponent, defineComponent, h, ref } from 'vue';
 import { ApiComponent, globalShareState, IconPicker } from '@vben/common-ui';
 import { $t } from '@vben/locales';
 
-import { notification } from 'antdv-next';
-
 const RichTextarea = defineAsyncComponent(() =>
   import('#/components/tinymce/index').then((res) => res.Tinymce),
 );
@@ -174,6 +172,7 @@ async function initComponentAdapter() {
     // 如果你的组件体积比较大，可以使用异步加载
     // Button: () =>
     // import('xxx').then((res) => res.Button),
+
     ApiCascader: withDefaultPlaceholder(ApiComponent, 'select', {
       component: Cascader,
       fieldNames: { label: 'label', value: 'value', children: 'children' },
@@ -255,7 +254,7 @@ async function initComponentAdapter() {
   globalShareState.defineMessage({
     // 复制成功消息提示
     copyPreferencesSuccess: (title, content) => {
-      notification.success({
+      window.notification.success({
         description: content,
         title,
         placement: 'bottomRight',
