@@ -89,12 +89,19 @@ const loading = ref(false);
 
 // 存放所有请求取消函数
 const abortList: (() => void)[] = [];
+let loadingTimer: ReturnType<typeof setTimeout>;
+
 async function handleLoadInfo(task: TaskInfo | undefined) {
+  currentFlowInfo.value = undefined;
+  onlyForBtnPermissionTask.value = undefined;
   if (!task) {
     return null;
   }
+  clearTimeout(loadingTimer);
   try {
-    loading.value = true;
+    loadingTimer = setTimeout(() => {
+      loading.value = true;
+    }, 300);
     // 取消之前的请求 & 清空数组
     abortList.forEach((abort) => abort());
     abortList.length = 0;
@@ -128,6 +135,7 @@ async function handleLoadInfo(task: TaskInfo | undefined) {
   } catch (error) {
     console.error(error);
   } finally {
+    clearTimeout(loadingTimer);
     loading.value = false;
   }
 }
