@@ -1,10 +1,9 @@
 <script setup lang="tsx">
 import type { DescriptionsProps } from 'antdv-next';
 
-import type { LeaveVO } from '../leave/api/model';
+import { computed, onBeforeUnmount } from 'vue';
 
-import { computed, onMounted, shallowRef } from 'vue';
-
+import { useRequest } from 'alova/client';
 import { Descriptions, Skeleton } from 'antdv-next';
 import dayjs from 'dayjs';
 
@@ -18,11 +17,14 @@ defineOptions({
 
 const props = defineProps<{ businessId: number | string }>();
 
-const data = shallowRef<LeaveVO>();
-onMounted(async () => {
-  const resp = await leaveInfo(props.businessId);
-  data.value = resp;
-});
+// const data = shallowRef<LeaveVO>();
+
+const { data, abort } = useRequest(() => leaveInfo(props.businessId));
+onBeforeUnmount(abort);
+// onMounted(async () => {
+//   const resp = await leaveInfo(props.businessId);
+//   data.value = resp;
+// });
 
 const leaveType = computed(() => {
   return (
