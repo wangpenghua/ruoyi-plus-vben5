@@ -3,10 +3,12 @@ import type { PropType } from 'vue';
 
 import type { DeptTree } from '#/api/system/user/model';
 
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
+
+import { listToTree, treeToList } from '@vben/utils';
 
 import { SyncOutlined } from '@antdv-next/icons';
-import { Empty, InputSearch, Skeleton, Tree } from 'antdv-next';
+import { Empty, Input, Skeleton, SpaceCompact, Tree } from 'antdv-next';
 
 import { getDeptTree } from '#/api/system/user';
 
@@ -66,6 +68,23 @@ async function loadTree() {
   showTreeSkeleton.value = false;
 }
 
+const deptTreeComputed = computed(() => {
+  if (!searchValue.value) {
+    return deptTreeArray.value;
+  }
+  const toTree = treeToList(deptTreeArray.value, {
+    id: 'id',
+    pid: 'parentId',
+  });
+  const filteredTree = toTree.filter((item: DeptTree) =>
+    item.label.toUpperCase().includes(searchValue.value.toUpperCase()),
+  );
+  return listToTree(filteredTree, {
+    id: 'id',
+    pid: 'parentId',
+  });
+});
+
 async function handleReload() {
   await loadTree();
   emit('reload');
@@ -90,33 +109,38 @@ onMounted(loadTree);
           v-if="showSearch"
           class="sticky left-0 top-0 z-100 bg-background p-[8px]"
         >
-          <InputSearch
-            v-model:value="searchValue"
-            :placeholder="$t('pages.common.search')"
-            size="small"
-            allow-clear
-          >
-            <template #enterButton>
-              <a-button @click="handleReload">
-                <SyncOutlined class="text-primary" />
-              </a-button>
-            </template>
-          </InputSearch>
+          <SpaceCompact class="w-full">
+            <Input
+              v-model:value="searchValue"
+              :placeholder="$t('pages.common.search')"
+              size="small"
+              allow-clear
+            />
+            <a-button size="small" @click="handleReload">
+              <SyncOutlined class="text-primary" />
+            </a-button>
+          </SpaceCompact>
         </div>
         <div class="h-full overflow-x-hidden px-[8px]">
           <Tree
             v-bind="$attrs"
-            v-if="deptTreeArray.length > 0"
+            v-if="deptTreeComputed.length > 0"
             v-model:selected-keys="selectDeptId"
             :class="$attrs.class"
             :field-names="{ title: 'label', key: 'id' }"
             :show-line="{ showLeafIcon: false }"
-            :tree-data="deptTreeArray"
+            :tree-data="deptTreeComputed"
             :virtual="false"
             default-expand-all
             @select="$emit('select')"
+            :styles="{
+              item: {
+                '--ant-tree-node-selected-bg':
+                  'var(--ant-color-primary-bg-hover)',
+              },
+            }"
           >
-            <template #title="{ label }">
+            <template #titleRender="{ label }">
               <span v-if="label.includes(searchValue)">
                 {{ label.substring(0, label.indexOf(searchValue)) }}
                 <span class="text-primary">{{ searchValue }}</span>
