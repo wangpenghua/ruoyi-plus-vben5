@@ -7,7 +7,6 @@ import { $t } from '@vben/locales';
 import { useUserStore } from '@vben/stores';
 import { buildUUID } from '@vben/utils';
 
-import { notification } from 'antdv-next';
 import dayjs from 'dayjs';
 import { defineStore } from 'pinia';
 
@@ -53,7 +52,7 @@ export const useNotifyStore = defineStore(
         if (!message) return;
         console.log(`接收到消息: ${message}`);
 
-        notification.success({
+        window.notification.success({
           description: message,
           duration: 3,
           title: $t('component.notice.received'),
