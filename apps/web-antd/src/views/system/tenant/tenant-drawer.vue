@@ -108,6 +108,9 @@ const [BasicDrawer, drawerApi] = useVbenDrawer({
         tenantInfo(id),
         setupPackageSelect(),
       ]);
+      record.expireTime = record.expireTime
+        ? (dayjs(record.expireTime) as any)
+        : undefined;
       await formApi.setValues(record);
     } else {
       await setupPackageSelect();
