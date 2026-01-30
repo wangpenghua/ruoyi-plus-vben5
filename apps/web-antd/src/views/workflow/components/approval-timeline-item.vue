@@ -82,7 +82,7 @@ const flowStatusOptions = getDictOptions(DictEnum.WF_TASK_STATUS);
         <MessageOutlined />
         <div class="break-all text-foreground/75">{{ item.message }}</div>
       </div>
-      <div v-if="attachmentInfo.length > 0" class="flex flex-wrap gap-2">
+      <div v-if="attachmentInfo.length > 0" class="flex flex-wrap gap-4">
         <!-- 这里下载的文件名不是原始文件名 -->
         <a
           v-for="attachment in attachmentInfo"
