@@ -10,7 +10,8 @@ import { MessageOutlined, UserOutlined } from '@antdv-next/icons';
 import { Avatar } from 'antdv-next';
 
 import { ossInfo } from '#/api/system/oss';
-import { renderDict } from '#/utils/render';
+import { DictTag } from '#/components/dict';
+import { getDictOptions } from '#/utils/dict';
 
 defineOptions({
   name: 'ApprovalTimelineItem',
@@ -43,14 +44,16 @@ onMounted(async () => {
 const isMultiplePerson = computed(
   () => props.item.approver?.split(',').length > 1,
 );
+
+const flowStatusOptions = getDictOptions(DictEnum.WF_TASK_STATUS);
 </script>
 
 <template>
   <div>
-    <div class="mb-5 ml-2 flex flex-col gap-1">
+    <div :class="cn('mb-5 ml-2 flex flex-col gap-1', 'mt-[-8px]')">
       <div class="flex items-center gap-1">
         <div class="font-bold">{{ item.nodeName }}</div>
-        <component :is="renderDict(item.flowStatus, DictEnum.WF_TASK_STATUS)" />
+        <DictTag :value="item.flowStatus" :dicts="flowStatusOptions" />
       </div>
 
       <div :class="cn('mt-2 flex flex-wrap gap-2')" v-if="isMultiplePerson">

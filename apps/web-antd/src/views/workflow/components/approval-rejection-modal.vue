@@ -58,7 +58,6 @@ const [BasicForm, formApi] = useVbenForm({
         maxSize: 20,
         accept: 'png, jpg, jpeg, doc, docx, xlsx, xls, ppt, pdf',
       },
-      defaultValue: [],
       label: '附件上传',
       formItemClass: 'items-start',
     },

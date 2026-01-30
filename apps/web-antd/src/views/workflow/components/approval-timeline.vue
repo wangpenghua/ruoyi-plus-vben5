@@ -60,6 +60,21 @@ const items = computed<TimelineProps['items']>(() => {
 </script>
 
 <template>
-  <Timeline v-if="list.length > 0" :items="items" />
+  <Timeline
+    v-if="list.length > 0"
+    :items="items"
+    :styles="{
+      item: {
+        /**
+         * 非finish状态hover会有加上primary色 不需要
+         */
+        '--ant-cmp-steps-item-text-hover-color': 'initial',
+        /**
+         * 时间线之间的间距 默认12px
+         */
+        '--ant-padding-sm': '16px',
+      },
+    }"
+  />
   <Empty v-else />
 </template>
