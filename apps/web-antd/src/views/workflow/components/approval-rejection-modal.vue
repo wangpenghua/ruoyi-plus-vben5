@@ -124,7 +124,7 @@ async function handleSubmit() {
     }
     const data = cloneDeep(await formApi.getValues());
     // 附件join
-    data.fileId = data.attachment?.join?.(',');
+    data.fileId = data.attachment;
     // 取消attachment参数的传递
     data.attachment = undefined;
     await backProcess(data);

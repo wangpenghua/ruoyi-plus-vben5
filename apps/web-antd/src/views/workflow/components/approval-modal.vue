@@ -160,7 +160,7 @@ async function handleSubmit() {
     }));
     const requestData = {
       ...omit(data, ['attachment']),
-      fileId: data.attachment.join(','),
+      fileId: data.attachment,
       taskVariables: {},
       variables: {},
       flowCopyList,

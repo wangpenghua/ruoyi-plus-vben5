@@ -136,7 +136,7 @@ async function handleSubmit() {
       userName: item.nickName,
     }));
     const requestData = {
-      fileId: attachment.join(','),
+      fileId: attachment,
       messageType,
       flowCopyList: flowCCList,
       taskId,
