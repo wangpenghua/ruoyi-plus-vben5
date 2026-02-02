@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import type { ConfigProviderProps } from 'antdv-next';
+
 import { computed } from 'vue';
 
 import { useAntdDesignTokens } from '@vben/hooks';
@@ -38,10 +40,25 @@ const waveConfig = computed(() => {
   const found = waveConfigs.find((item) => item.name === buttonWaveMode);
   return found ? found.wave : {};
 });
+
+const otherProps = computed<
+  Omit<ConfigProviderProps, 'locale' | 'theme' | 'wave'>
+>(() => {
+  // 目前不生效?
+  return {
+    modal: { mask: { blur: false } },
+    drawer: { mask: { blur: false } },
+  };
+});
 </script>
 
 <template>
-  <ConfigProvider :locale="antdLocale" :theme="tokenTheme" :wave="waveConfig">
+  <ConfigProvider
+    :locale="antdLocale"
+    :theme="tokenTheme"
+    :wave="waveConfig"
+    v-bind="otherProps"
+  >
     <App>
       <RouterView />
       <PopupContext />
