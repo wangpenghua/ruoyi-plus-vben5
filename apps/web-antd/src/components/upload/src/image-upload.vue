@@ -148,7 +148,7 @@ function currentPreview(file: UploadFile) {
 
     <Image
       v-if="previewImage"
-      class="hidden"
+      :styles="{ root: { display: 'none' } }"
       :src="previewImage"
       :preview="{
         open: previewVisible,
