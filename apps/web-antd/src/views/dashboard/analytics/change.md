@@ -28,4 +28,3 @@
 ## 已知问题
 
 - message的duration无效
-- 图片上传(Uplaod) > 图片预览无效
