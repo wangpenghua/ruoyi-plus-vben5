@@ -92,6 +92,7 @@ export function useBeforeCloseDiff(props: BeforeCloseDiffProps) {
           okButtonProps: { danger: true },
           cancelText: $t('common.cancel'),
           okText: $t('common.confirm'),
+          mask: { blur: false },
           onOk: () => {
             resolve(true);
             isInitialized.value = false;
