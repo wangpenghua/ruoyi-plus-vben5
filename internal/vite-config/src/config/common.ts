@@ -5,7 +5,7 @@ async function getCommonConfig(): Promise<UserConfig> {
     build: {
       chunkSizeWarningLimit: 2000,
       reportCompressedSize: false,
-      sourcemap: true,
+      sourcemap: false,
     },
   };
 }
