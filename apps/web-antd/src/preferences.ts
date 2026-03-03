@@ -70,9 +70,9 @@ export const overridesPreferences = defineOverridesPreferences({
     /** 默认主题模式 */
     mode: 'light',
     /**
-     * TODO: 发布正式版会改为默认
+     * 按钮水波纹样式
      */
-    buttonWaveMode: 'Happy',
+    buttonWaveMode: 'Default',
     /**
      * 浅色sidebar
      */
