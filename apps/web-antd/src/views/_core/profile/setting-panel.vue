@@ -31,7 +31,10 @@ const settingList = [
 </script>
 
 <template>
-  <Tabs class="rounded-[var(--radius)] bg-background px-[16px] lg:flex-1">
+  <Tabs
+    class="rounded-[var(--radius)] bg-background lg:flex-1"
+    :classes="{ header: 'px-4' }"
+  >
     <TabPane v-for="item in settingList" :key="item.key" :tab="item.name">
       <component :is="item.component" v-bind="$attrs" />
     </TabPane>
