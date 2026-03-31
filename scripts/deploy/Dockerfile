@@ -8,6 +8,7 @@ ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 # 增加内存限制以防止构建大型项目时 OOM
 ENV NODE_OPTIONS=--max-old-space-size=8192
+ENV TZ=Asia/Shanghai
 
 # 启用 corepack 以使用 pnpm
 RUN npm i -g corepack

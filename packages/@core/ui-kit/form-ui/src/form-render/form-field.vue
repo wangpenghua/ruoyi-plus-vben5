@@ -48,6 +48,7 @@ const {
   modelPropName,
   renderComponentContent,
   rules,
+  help,
 } = defineProps<
   Props & {
     commonComponentProps: MaybeComponentProps;
@@ -164,6 +165,18 @@ const computedProps = computed(() => {
     ...finalComponentProps,
     ...dynamicComponentProps.value,
   };
+});
+
+// 自定义帮助信息
+const computedHelp = computed(() => {
+  const helpContent = help;
+  if (!helpContent) {
+    return undefined;
+  }
+  return () =>
+    isFunction(helpContent)
+      ? helpContent(values.value, getFormApi())
+      : helpContent;
 });
 
 watch(
@@ -308,7 +321,7 @@ onUnmounted(() => {
             labelClass,
           )
         "
-        :help="help"
+        :help="computedHelp"
         :colon="colon"
         :label="label"
         :required="shouldRequired && !hideRequiredMark"

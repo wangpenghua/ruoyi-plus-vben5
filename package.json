@@ -16,15 +16,16 @@
   ],
   "homepage": "https://github.com/vbenjs/vue-vben-admin",
   "bugs": "https://github.com/vbenjs/vue-vben-admin/issues",
+  "repository": "vbenjs/vue-vben-admin.git",
   "license": "MIT",
   "author": {
     "name": "vben",
     "email": "ann.vben@gmail.com",
     "url": "https://github.com/anncwb"
   },
-  "repository": "vbenjs/vue-vben-admin.git",
   "type": "module",
   "scripts": {
+    "bootstrap": "pnpm install",
     "build": "cross-env NODE_OPTIONS=--max-old-space-size=8192 turbo build",
     "build:analyze": "turbo build:analyze",
     "build:antd": "pnpm run build --filter=@vben/web-antd build:prod",
@@ -44,6 +45,7 @@
     "lint": "vsh lint",
     "postinstall": "pnpm -r run stub --if-present",
     "preinstall": "npx only-allow pnpm",
+    "prepare": "is-ci || pnpm exec lefthook install",
     "preview": "turbo-run preview",
     "publint": "vsh publint",
     "reinstall": "pnpm clean --del-lock && pnpm install",
